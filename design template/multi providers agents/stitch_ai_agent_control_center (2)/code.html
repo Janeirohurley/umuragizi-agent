@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agent Admin - Providers &amp; Accounts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b1326;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2d3449;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #1e293b;
+        }
+        .status-glow-active {
+            box-shadow: 0 0 8px rgba(78, 222, 163, 0.4);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#005236",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "inverse-primary": "#006591",
+                        "on-secondary": "#003824",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-background": "#dae2fd",
+                        "outline-variant": "#3e4850",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#2d3449",
+                        "surface-dim": "#0b1326",
+                        "on-tertiary": "#472a00",
+                        "primary-fixed-dim": "#89ceff",
+                        "surface-container-highest": "#2d3449",
+                        "tertiary": "#ffb95f",
+                        "on-primary-fixed": "#001e2f",
+                        "on-primary-container": "#003751",
+                        "surface-container-high": "#222a3d",
+                        "surface-container": "#171f33",
+                        "on-surface-variant": "#bec8d2",
+                        "inverse-on-surface": "#283044",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "secondary-container": "#00a572",
+                        "on-primary": "#00344d",
+                        "primary-fixed": "#c9e6ff",
+                        "background": "#0b1326",
+                        "on-tertiary-container": "#4a2c00",
+                        "error-container": "#93000a",
+                        "surface-bright": "#31394d",
+                        "outline": "#88929b",
+                        "surface-tint": "#89ceff",
+                        "on-secondary-fixed": "#002113",
+                        "surface-container-lowest": "#060e20",
+                        "on-secondary-container": "#00311f",
+                        "primary": "#89ceff",
+                        "surface": "#0b1326",
+                        "inverse-surface": "#dae2fd",
+                        "primary-container": "#0ea5e9",
+                        "tertiary-fixed": "#ffddb8",
+                        "surface-container-low": "#131b2e",
+                        "secondary-fixed": "#6ffbbe",
+                        "secondary": "#4edea3",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-surface": "#dae2fd",
+                        "tertiary-container": "#d88a00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sidebar-width": "260px",
+                        "section-gap": "32px",
+                        "gutter": "24px",
+                        "card-padding": "20px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "table-header": ["Inter"],
+                        "code-label": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "table-header": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "code-label": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary/30">
+<!-- SideNavBar Shell -->
+<aside class="w-sidebar-width h-full fixed left-0 top-0 border-r border-outline-variant bg-surface-container-high flex flex-col overflow-y-auto z-50">
+<div class="px-6 py-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Agent Admin</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-70">Enterprise Console</p>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<!-- Navigation Items mapped from JSON -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">domain</span>
+<span class="font-body-md text-body-md">Tenants</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">vpn_key</span>
+<span class="font-body-md text-body-md">Tokens</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">devices</span>
+<span class="font-body-md text-body-md">Devices</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-body-md text-body-md">Agents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">model_training</span>
+<span class="font-body-md text-body-md">Models</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-body-md text-body-md">Conversations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-body-md text-body-md">Knowledge</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+<span class="font-body-md text-body-md">Logs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary border-l-4 border-primary bg-primary-container/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-outline-variant mt-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center border border-primary/40 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional high-resolution headshot of a technical enterprise administrator, looking sharp and professional against a minimalist dark tech background. The aesthetic is clean and modern, consistent with a high-end corporate AI control center." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2308tjhfZKx9bGGqH9-HE6pSeOsJsTEjoBBoKdISPyUNGWem509Rh32GszJ-1QW2n61BhKcnHBCjGg6AaIu7hCmAi05RLQkjrGUoP1v2ASgPS9x4fjM1nyfNPMheJUGbxNwh1CxsH2GAWIP4SUIRDLpUHYtHY1zQXqahBIvsy76Ynf5HD9fvr99VrBQAQ9h6cnqtzjWSH4_bKzOh0IxOLDF8F4Ti3knZ5oZmfXjX2XfBCQ2wdx4aS3A"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-semibold">Admin User</span>
+<span class="text-[10px] uppercase tracking-wider text-primary">Master Access</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-260px)] h-16 border-b border-outline-variant bg-surface flex items-center justify-between px-gutter z-40">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Settings</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="font-body-sm text-body-sm text-primary font-bold">Providers &amp; Accounts</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<input class="bg-surface-container-low border border-outline-variant rounded-lg px-10 py-1.5 text-body-sm focus:ring-1 focus:ring-primary focus:outline-none w-64 transition-all duration-200" placeholder="Search accounts..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">help_outline</span></button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar-width pt-24 px-gutter pb-gutter min-h-screen">
+<div class="max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">Providers &amp; Accounts</h2>
+<p class="text-on-surface-variant">Orchestrate your AI backbone. Monitor provider health and manage API credentials across multi-model environments.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-surface-container-high border border-outline-variant text-on-surface rounded-lg hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined">sync</span>
+<span class="font-body-md">Test All Connections</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-primary text-on-primary rounded-lg font-semibold hover:opacity-90 transition-all shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined">add</span>
+<span class="font-body-md">Add Provider</span>
+</button>
+</div>
+</div>
+<!-- Provider Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-section-gap">
+<!-- Provider Card: OpenAI -->
+<div class="glass-card p-card-padding rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4">
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary/10 border border-secondary/20 text-secondary">
+<span class="w-2 h-2 rounded-full bg-secondary status-glow-active"></span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Healthy</span>
+</div>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-lg bg-white/5 border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm">OpenAI</h3>
+<p class="text-body-sm text-on-surface-variant">4 active accounts</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Latency (Avg)</span>
+<span class="font-code-label text-code-label text-primary">142ms</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Error Rate</span>
+<span class="font-code-label text-code-label text-secondary">0.02%</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/30 flex justify-between items-center">
+<button class="text-primary text-body-sm font-semibold hover:underline">View Details</button>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</div>
+</div>
+<!-- Provider Card: Anthropic -->
+<div class="glass-card p-card-padding rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4">
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary/10 border border-secondary/20 text-secondary">
+<span class="w-2 h-2 rounded-full bg-secondary status-glow-active"></span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Healthy</span>
+</div>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-lg bg-white/5 border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-3xl" style="font-variation-settings: 'FILL' 1;">neurology</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm">Anthropic</h3>
+<p class="text-body-sm text-on-surface-variant">2 active accounts</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Latency (Avg)</span>
+<span class="font-code-label text-code-label text-primary">310ms</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Error Rate</span>
+<span class="font-code-label text-code-label text-secondary">0.00%</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/30 flex justify-between items-center">
+<button class="text-primary text-body-sm font-semibold hover:underline">View Details</button>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</div>
+</div>
+<!-- Provider Card: Google Gemini -->
+<div class="glass-card p-card-padding rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4">
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Degraded</span>
+</div>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-lg bg-white/5 border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-blue-400 text-3xl" style="font-variation-settings: 'FILL' 1;">google</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm">Google Gemini</h3>
+<p class="text-body-sm text-on-surface-variant">1 active account</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Latency (Avg)</span>
+<span class="font-code-label text-code-label text-tertiary">1.2s</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Error Rate</span>
+<span class="font-code-label text-code-label text-error">4.50%</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/30 flex justify-between items-center">
+<button class="text-primary text-body-sm font-semibold hover:underline">View Details</button>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</div>
+</div>
+<!-- Provider Card: Groq -->
+<div class="glass-card p-card-padding rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4">
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary/10 border border-secondary/20 text-secondary">
+<span class="w-2 h-2 rounded-full bg-secondary status-glow-active"></span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Healthy</span>
+</div>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-lg bg-white/5 border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings: 'FILL' 1;">speed</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm">Groq</h3>
+<p class="text-body-sm text-on-surface-variant">1 active account</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Latency (Avg)</span>
+<span class="font-code-label text-code-label text-primary">45ms</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-sm text-on-surface-variant">Error Rate</span>
+<span class="font-code-label text-code-label text-secondary">0.01%</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/30 flex justify-between items-center">
+<button class="text-primary text-body-sm font-semibold hover:underline">View Details</button>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</div>
+</div>
+</section>
+<!-- Detailed Accounts Table -->
+<section class="glass-card rounded-xl overflow-hidden mb-section-gap">
+<div class="p-6 border-b border-outline-variant flex flex-col md:flex-row justify-between items-center gap-4">
+<div>
+<h3 class="font-title-sm text-title-sm">API Accounts</h3>
+<p class="text-body-sm text-on-surface-variant">Managing 8 credentials across all providers</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined">key</span>
+<span class="font-body-md">Add New Account</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 font-table-header text-table-header uppercase tracking-wider text-on-surface-variant">Account / Label</th>
+<th class="px-6 py-4 font-table-header text-table-header uppercase tracking-wider text-on-surface-variant">Provider</th>
+<th class="px-6 py-4 font-table-header text-table-header uppercase tracking-wider text-on-surface-variant">API Key</th>
+<th class="px-6 py-4 font-table-header text-table-header uppercase tracking-wider text-on-surface-variant">Quota Usage</th>
+<th class="px-6 py-4 font-table-header text-table-header uppercase tracking-wider text-on-surface-variant">Status</th>
+<th class="px-6 py-4 font-table-header text-table-header uppercase tracking-wider text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Table Row 1 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Production-Cl-3.5</span>
+<span class="text-[10px] text-on-surface-variant opacity-60">Created Oct 12, 2023</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-lg">neurology</span>
+<span class="text-body-md">Anthropic</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<code class="font-code-label text-code-label bg-surface-container px-2 py-1 rounded">sk-ant-••••••3a2x</code>
+</td>
+<td class="px-6 py-4 min-w-[200px]">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between text-[10px] font-bold uppercase tracking-tight">
+<span class="text-on-surface-variant">72.5k / 100k tokens</span>
+<span class="text-primary">72%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full shadow-[0_0_8px_rgba(137,206,255,0.4)]" style="width: 72%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-secondary/10 text-secondary border border-secondary/20">Operational</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined">settings</span></button>
+<button class="p-2 hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+<!-- Table Row 2 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">OpenAI-GPT4o-Main</span>
+<span class="text-[10px] text-on-surface-variant opacity-60">Created Sep 05, 2023</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">bolt</span>
+<span class="text-body-md">OpenAI</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<code class="font-code-label text-code-label bg-surface-container px-2 py-1 rounded">sk-proj-••••••99wz</code>
+</td>
+<td class="px-6 py-4 min-w-[200px]">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between text-[10px] font-bold uppercase tracking-tight">
+<span class="text-on-surface-variant">912 / 2000 Requests</span>
+<span class="text-secondary">45%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-secondary/10 text-secondary border border-secondary/20">Operational</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined">settings</span></button>
+<button class="p-2 hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+<!-- Table Row 3 (Cooldown State) -->
+<tr class="hover:bg-primary/5 transition-colors group bg-error-container/5">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Gemini-Pro-Dev</span>
+<span class="text-[10px] text-on-surface-variant opacity-60">Created Jan 10, 2024</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-400 text-lg">google</span>
+<span class="text-body-md">Google</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<code class="font-code-label text-code-label bg-surface-container px-2 py-1 rounded">AIzaSy••••••q78k</code>
+</td>
+<td class="px-6 py-4 min-w-[200px]">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between text-[10px] font-bold uppercase tracking-tight">
+<span class="text-error">Rate Limited</span>
+<span class="text-error">100%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full shadow-[0_0_8px_rgba(255,180,171,0.4)]" style="width: 100%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-error/10 text-error border border-error/20 inline-block text-center">Cooldown</span>
+<span class="text-[10px] text-on-surface-variant text-center">Resets in 02:41</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined">refresh</span></button>
+<button class="p-2 hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Bottom Action Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="p-6 rounded-xl border border-dashed border-outline-variant hover:border-primary hover:bg-primary/5 transition-all cursor-pointer flex flex-col items-center justify-center text-center group">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-2xl">add_box</span>
+</div>
+<h4 class="font-title-sm text-title-sm mb-1">Add Cloud Provider</h4>
+<p class="text-body-sm text-on-surface-variant">Connect to AWS Bedrock, Azure OpenAI, or Vertex AI</p>
+</div>
+<div class="p-6 rounded-xl border border-dashed border-outline-variant hover:border-secondary hover:bg-secondary/5 transition-all cursor-pointer flex flex-col items-center justify-center text-center group">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary text-2xl">terminal</span>
+</div>
+<h4 class="font-title-sm text-title-sm mb-1">Custom Endpoints</h4>
+<p class="text-body-sm text-on-surface-variant">Configure local LLMs via Ollama, vLLM or TGI</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Meta -->
+<footer class="ml-sidebar-width py-8 border-t border-outline-variant/30 text-center">
+<p class="text-body-sm text-on-surface-variant opacity-50">Agent Platform Admin Console © 2024. Systems Operational.</p>
+</footer>
+<script>
+        // Simple Micro-interaction for account table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                console.log('Row clicked: ' + row.querySelector('span.font-semibold').innerText);
+            });
+        });
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.classList.add('w-80');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.classList.remove('w-80');
+        });
+    </script>
+</body></html>

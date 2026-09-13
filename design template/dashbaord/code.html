@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch AI Admin - Overview Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#89ceff",
+                        "on-tertiary": "#472a00",
+                        "tertiary": "#ffb95f",
+                        "on-primary-fixed": "#001e2f",
+                        "surface-container-highest": "#2d3449",
+                        "on-primary-container": "#003751",
+                        "surface-container-high": "#222a3d",
+                        "on-surface-variant": "#bec8d2",
+                        "surface-container": "#171f33",
+                        "inverse-on-surface": "#283044",
+                        "on-secondary-fixed-variant": "#005236",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "inverse-primary": "#006591",
+                        "on-secondary": "#003824",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#3e4850",
+                        "on-background": "#dae2fd",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface-variant": "#2d3449",
+                        "surface-dim": "#0b1326",
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#dae2fd",
+                        "surface": "#0b1326",
+                        "primary": "#89ceff",
+                        "primary-container": "#0ea5e9",
+                        "surface-container-low": "#131b2e",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "secondary": "#4edea3",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-surface": "#dae2fd",
+                        "secondary-fixed-dim": "#4edea3",
+                        "tertiary-container": "#d88a00",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "secondary-container": "#00a572",
+                        "on-primary": "#00344d",
+                        "primary-fixed": "#c9e6ff",
+                        "on-tertiary-container": "#4a2c00",
+                        "error-container": "#93000a",
+                        "background": "#0b1326",
+                        "surface-tint": "#89ceff",
+                        "outline": "#88929b",
+                        "surface-bright": "#31394d",
+                        "on-secondary-fixed": "#002113",
+                        "surface-container-lowest": "#060e20",
+                        "on-secondary-container": "#00311f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap": "32px",
+                        "gutter": "24px",
+                        "sidebar-width": "260px",
+                        "container-max": "1440px",
+                        "card-padding": "20px"
+                    },
+                    "fontFamily": {
+                        "code-label": [
+                            "JetBrains Mono"
+                        ],
+                        "table-header": [
+                            "Inter"
+                        ],
+                        "body-md": [
+                            "Inter"
+                        ],
+                        "body-sm": [
+                            "Inter"
+                        ],
+                        "display-lg": [
+                            "Inter"
+                        ],
+                        "title-sm": [
+                            "Inter"
+                        ],
+                        "headline-md": [
+                            "Inter"
+                        ]
+                    },
+                    "fontSize": {
+                        "code-label": [
+                            "12px",
+                            {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                            }
+                        ],
+                        "table-header": [
+                            "11px",
+                            {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "body-md": [
+                            "14px",
+                            {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "body-sm": [
+                            "12px",
+                            {
+                                "lineHeight": "18px",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "display-lg": [
+                            "32px",
+                            {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                            }
+                        ],
+                        "title-sm": [
+                            "18px",
+                            {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "headline-md": [
+                            "24px",
+                            {
+                                "lineHeight": "32px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .cyber-glow {
+            box-shadow: 0 0 10px rgba(137, 206, 255, 0.2);
+        }
+        .cyber-glow-success {
+            box-shadow: 0 0 10px rgba(78, 222, 163, 0.2);
+        }
+        .cyber-glow-warning {
+            box-shadow: 0 0 10px rgba(255, 185, 95, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<aside class="w-sidebar-width h-full fixed left-0 top-0 bg-surface-container-high border-r border-outline-variant flex flex-col z-20">
+<div class="h-16 flex items-center px-gutter border-b border-outline-variant">
+<img alt="Agent Platform Admin Logo" class="h-8 w-8 mr-3 rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjCvPOmh8riAe0XkPSqjQqhblFHWx730HUevfERUfMijvgM6Q_fDrHrZaCEm9Kr_AvypdI4TZ5dLcTE7feFRiUzM_DPTW79gPILX-DkK8WCSY4TMddnwiENzil3TUtL7BrGbPQS5D4Z3KBOpiLbokzfZ8-snSO5qJ3xj3XnqbtZzaojeFInMPmWP-jZ1x6IG62RX-36zFP_dCpWcZjo-NLv0djvJKUXDdcIthVwHsShzvitwktNcqVoQ"/>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Agent Admin</h1>
+<p class="font-code-label text-code-label text-on-surface-variant">Enterprise Console</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto py-4">
+<a class="flex items-center gap-3 px-4 py-3 text-primary border-l-4 border-primary bg-primary-container/10 duration-200 ease-in-out font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200 ease-in-out font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">domain</span>
+                Tenants
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200 ease-in-out font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">vpn_key</span>
+                Tokens
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200 ease-in-out font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">devices</span>
+                Devices
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200 ease-in-out font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+                Agents
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200 ease-in-out font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">model_training</span>
+                Models
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200 ease-in-out font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">forum</span>
+                Conversations
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200 ease-in-out font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+                Knowledge
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200 ease-in-out font-title-sm text-title-sm" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+                Logs
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200 ease-in-out font-title-sm text-title-sm mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+</aside>
+<!-- Main Layout -->
+<div class="flex-1 flex flex-col ml-[260px]">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-260px)] h-16 bg-surface border-b border-outline-variant flex items-center justify-between px-gutter z-10">
+<div class="flex items-center gap-4 bg-surface-container-high px-4 py-2 rounded-lg border border-outline-variant w-96 focus-within:border-primary focus-within:cyber-glow transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none outline-none text-on-surface placeholder-on-surface-variant w-full font-body-sm text-body-sm" placeholder="Search resources, IDs, or tenants..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full cyber-glow"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-title-sm text-title-sm font-bold border border-primary cyber-glow">
+                    A
+                </div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto mt-16 p-gutter bg-background">
+<div class="max-w-container-max mx-auto space-y-gutter">
+<!-- Page Header & Quick Actions -->
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Overview Dashboard</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">System-wide monitoring and resource telemetry.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-primary text-on-primary rounded font-title-sm text-title-sm font-semibold hover:bg-primary-fixed-dim transition-colors cyber-glow flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                            Create Tenant
+                        </button>
+<button class="px-4 py-2 bg-transparent border border-outline text-on-surface rounded font-title-sm text-title-sm hover:border-primary hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">key</span>
+                            Generate Token
+                        </button>
+<button class="px-4 py-2 bg-transparent border border-outline text-on-surface rounded font-title-sm text-title-sm hover:border-primary hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+                            Add Agent
+                        </button>
+<button class="px-4 py-2 bg-surface-container-high border border-outline-variant text-on-surface rounded font-title-sm text-title-sm hover:bg-surface-container-highest transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">list_alt</span>
+                            View Logs
+                        </button>
+</div>
+</div>
+<!-- System Summary (Top row) -->
+<div class="grid grid-cols-4 gap-gutter">
+<!-- Card 1: TENANTS -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-card-padding flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<h3 class="font-table-header text-table-header text-on-surface-variant uppercase">Tenants</h3>
+<span class="material-symbols-outlined text-primary">domain</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-surface font-bold">125</div>
+<div class="font-body-sm text-body-sm text-secondary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                +12 this month
+                            </div>
+</div>
+<div class="border-t border-outline-variant pt-3 flex justify-between font-code-label text-code-label text-on-surface-variant">
+<span>125 Total</span>
+<span class="text-secondary">118 Active</span>
+<span class="text-error">7 Suspended</span>
+</div>
+</div>
+<!-- Card 2: ACTIVE AGENTS -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-card-padding flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<h3 class="font-table-header text-table-header text-on-surface-variant uppercase">Active Agents</h3>
+<span class="material-symbols-outlined text-secondary">smart_toy</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-surface font-bold">42</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="w-2 h-2 rounded-full bg-secondary cyber-glow-success"></span>
+                                System nominal
+                            </div>
+</div>
+<div class="border-t border-outline-variant pt-3 flex justify-between font-code-label text-code-label text-on-surface-variant">
+<span>50 Configured</span>
+<span class="text-secondary">42 Prod</span>
+<span class="text-error">2 Error</span>
+</div>
+</div>
+<!-- Card 3: DEVICES -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-card-padding flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<h3 class="font-table-header text-table-header text-on-surface-variant uppercase">Devices</h3>
+<span class="material-symbols-outlined text-tertiary">devices</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-surface font-bold">8,540</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">sync</span>
+                                Real-time sync
+                            </div>
+</div>
+<div class="border-t border-outline-variant pt-3 flex justify-between font-code-label text-code-label text-on-surface-variant">
+<span>8.6k Activated</span>
+<span class="text-secondary">8.5k Online</span>
+<span class="text-error">12 Blocked</span>
+</div>
+</div>
+<!-- Card 4: TOKENS -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-card-padding flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<h3 class="font-table-header text-table-header text-on-surface-variant uppercase">Tokens</h3>
+<span class="material-symbols-outlined text-primary">vpn_key</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-surface font-bold">12,500</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">data_usage</span>
+                                Quota tracking
+                            </div>
+</div>
+<div class="border-t border-outline-variant pt-3 flex justify-between font-code-label text-code-label text-on-surface-variant">
+<span>Total Issued</span>
+<span class="text-primary">8.3k Used</span>
+<span class="text-on-surface-variant">4.2k Avail</span>
+</div>
+</div>
+</div>
+<!-- Main Bento Grid -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column (8 cols) -->
+<div class="col-span-8 flex flex-col gap-gutter">
+<!-- AI Consumption Section -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-card-padding flex flex-col h-[300px]">
+<div class="flex justify-between items-center border-b border-outline-variant pb-4 mb-4">
+<h3 class="font-title-sm text-title-sm font-semibold text-on-surface">AI Usage - Today</h3>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 flex items-center gap-8">
+<div class="flex flex-col gap-2 w-1/3">
+<span class="font-table-header text-table-header text-on-surface-variant uppercase">Total Tokens</span>
+<span class="font-display-lg text-display-lg text-primary font-bold">2.45M</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-2 border-t border-outline-variant pt-2">
+                                        Aggregated across all active models and tenants.
+                                    </span>
+</div>
+<div class="flex-1 flex flex-col justify-center gap-6">
+<!-- Progress Bar 1 -->
+<div>
+<div class="flex justify-between font-code-label text-code-label mb-2">
+<span class="text-on-surface">Tenant A</span>
+<span class="text-on-surface-variant">45% (1.1M)</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary cyber-glow" style="width: 45%;"></div>
+</div>
+</div>
+<!-- Progress Bar 2 -->
+<div>
+<div class="flex justify-between font-code-label text-code-label mb-2">
+<span class="text-on-surface">Tenant B</span>
+<span class="text-on-surface-variant">30% (735K)</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary cyber-glow-warning" style="width: 30%;"></div>
+</div>
+</div>
+<!-- Progress Bar 3 -->
+<div>
+<div class="flex justify-between font-code-label text-code-label mb-2">
+<span class="text-on-surface">Tenant C</span>
+<span class="text-on-surface-variant">25% (612K)</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary cyber-glow-success" style="width: 25%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity Table -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl flex flex-col flex-1">
+<div class="flex justify-between items-center p-card-padding border-b border-outline-variant">
+<h3 class="font-title-sm text-title-sm font-semibold text-on-surface">Recent Activations</h3>
+<button class="text-primary font-body-sm text-body-sm hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-highest/50">
+<th class="p-4 font-table-header text-table-header text-on-surface-variant uppercase">Device ID</th>
+<th class="p-4 font-table-header text-table-header text-on-surface-variant uppercase">Tenant</th>
+<th class="p-4 font-table-header text-table-header text-on-surface-variant uppercase">Time</th>
+<th class="p-4 font-table-header text-table-header text-on-surface-variant uppercase">Status</th>
+</tr>
+</thead>
+<tbody class="font-code-label text-code-label text-on-surface">
+<tr class="border-b border-outline-variant hover:bg-surface-container-highest transition-colors">
+<td class="p-4 font-medium text-primary">dev_83hd92</td>
+<td class="p-4">Client A</td>
+<td class="p-4 text-on-surface-variant">10:42 AM</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-secondary-container/20 text-secondary border border-secondary/30">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                                    Active
+                                                </span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-highest transition-colors">
+<td class="p-4 font-medium text-primary">dev_94xk11</td>
+<td class="p-4">Global Corp</td>
+<td class="p-4 text-on-surface-variant">10:28 AM</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-secondary-container/20 text-secondary border border-secondary/30">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                                    Active
+                                                </span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-highest transition-colors">
+<td class="p-4 font-medium text-primary">dev_22pq88</td>
+<td class="p-4">Nexus Ind.</td>
+<td class="p-4 text-on-surface-variant">09:15 AM</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-error-container/20 text-error border border-error/30">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                                    Blocked
+                                                </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-highest transition-colors">
+<td class="p-4 font-medium text-primary">dev_71mm44</td>
+<td class="p-4">Client B</td>
+<td class="p-4 text-on-surface-variant">08:55 AM</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-secondary-container/20 text-secondary border border-secondary/30">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                                    Active
+                                                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column (4 cols) -->
+<div class="col-span-4 flex flex-col gap-gutter">
+<!-- Security Monitor -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl flex flex-col h-[200px]">
+<div class="p-4 border-b border-outline-variant flex items-center justify-between bg-surface-container-highest/30 rounded-t-xl">
+<h3 class="font-title-sm text-title-sm font-semibold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">security</span>
+                                    Security Monitor
+                                </h3>
+<span class="font-code-label text-code-label text-secondary flex items-center gap-1 cyber-glow-success px-2 py-1 bg-secondary/10 border border-secondary/30 rounded">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                    No critical issues
+                                </span>
+</div>
+<div class="p-4 flex-1 overflow-y-auto space-y-3 font-code-label text-code-label text-on-surface-variant">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-error text-[16px] mt-0.5">block</span>
+<div>
+<div class="text-on-surface">Token revoked</div>
+<div class="text-xs opacity-70">tk_99x...a1 by Admin (10 mins ago)</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">add_circle</span>
+<div>
+<div class="text-on-surface">New device paired</div>
+<div class="text-xs opacity-70">dev_83h...92 to Client A (45 mins ago)</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-tertiary text-[16px] mt-0.5">warning</span>
+<div>
+<div class="text-on-surface">Multiple failed logins</div>
+<div class="text-xs opacity-70">IP 192.168.1.44 (2 hrs ago)</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Agents Status -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl flex flex-col flex-1">
+<div class="p-4 border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-title-sm text-title-sm font-semibold text-on-surface">Agents Status</h3>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">smart_toy</span>
+</div>
+<div class="p-4 flex-1 space-y-4">
+<!-- Agent 1 -->
+<div class="bg-surface-container p-3 rounded border border-outline-variant/50 hover:border-primary/50 transition-colors">
+<div class="flex justify-between items-center mb-2">
+<div class="font-code-label text-code-label font-bold text-on-surface">Customer Support AI</div>
+<span class="font-code-label text-[10px] text-secondary bg-secondary/10 px-1.5 py-0.5 rounded border border-secondary/30 flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-secondary"></span>ONLINE
+                                        </span>
+</div>
+<div class="grid grid-cols-2 gap-2 font-code-label text-[11px] text-on-surface-variant mt-2 pt-2 border-t border-outline-variant/30">
+<div>Model: <span class="text-primary">GPT-4-Turbo</span></div>
+<div class="text-right">Reqs: 14.2k/hr</div>
+<div class="col-span-2">Last Run: 2s ago</div>
+</div>
+</div>
+<!-- Agent 2 -->
+<div class="bg-surface-container p-3 rounded border border-outline-variant/50 hover:border-primary/50 transition-colors">
+<div class="flex justify-between items-center mb-2">
+<div class="font-code-label text-code-label font-bold text-on-surface">Data Ingestion Bot</div>
+<span class="font-code-label text-[10px] text-tertiary bg-tertiary/10 px-1.5 py-0.5 rounded border border-tertiary/30 flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-tertiary"></span>WARNING
+                                        </span>
+</div>
+<div class="grid grid-cols-2 gap-2 font-code-label text-[11px] text-on-surface-variant mt-2 pt-2 border-t border-outline-variant/30">
+<div>Model: <span class="text-primary">Custom-BERT</span></div>
+<div class="text-right">Reqs: 850/hr</div>
+<div class="col-span-2 text-tertiary">High latency detected (450ms)</div>
+</div>
+</div>
+<!-- Agent 3 -->
+<div class="bg-surface-container p-3 rounded border border-outline-variant/50 hover:border-primary/50 transition-colors opacity-70">
+<div class="flex justify-between items-center mb-2">
+<div class="font-code-label text-code-label font-bold text-on-surface">Legacy Scraper</div>
+<span class="font-code-label text-[10px] text-on-surface-variant bg-surface-container-highest px-1.5 py-0.5 rounded border border-outline-variant flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-on-surface-variant"></span>OFFLINE
+                                        </span>
+</div>
+<div class="grid grid-cols-2 gap-2 font-code-label text-[11px] text-on-surface-variant mt-2 pt-2 border-t border-outline-variant/30">
+<div>Model: <span class="text-primary">GPT-3.5</span></div>
+<div class="text-right">Reqs: 0/hr</div>
+<div class="col-span-2">Last Run: 4d ago</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
