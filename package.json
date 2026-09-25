@@ -22,7 +22,7 @@
     "@mastra/evals": "^1.5.1",
     "@mastra/libsql": "^1.16.0",
     "@mastra/loggers": "^1.2.0",
-    "@mastra/memory": "^1.23.0",
+    "@mastra/memory": "^1.32.1",
     "@mastra/observability": "^1.16.1",
     "@mastra/pg": "^1.16.0",
     "@types/ioredis": "^4.28.10",
